@@ -1,0 +1,20 @@
+# Logs
+*.log
+emby2Alist/nginx/log/
+
+# Cache directories
+emby2Alist/nginx/embyCache/
+
+# Environment files
+.env
+*.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
