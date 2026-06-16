@@ -474,12 +474,32 @@ download_files() {
         "nginx.conf"
         "conf.d/emby.conf"
         "conf.d/emby.js"
+        "conf.d/constant.js"
+        # config 目录
         "conf.d/config/constant-common.js"
         "conf.d/config/constant-symlink.js"
         "conf.d/config/constant-strm.js"
         "conf.d/config/constant-transcode.js"
         "conf.d/config/constant-ext.js"
         "conf.d/config/constant-nginx.js"
+        "conf.d/config/constant-mount.js"
+        "conf.d/config/constant-pro.js"
+        # common 目录 - 必需的 JS 模块
+        "conf.d/common/util.js"
+        "conf.d/common/url-util.js"
+        "conf.d/common/live-util.js"
+        "conf.d/common/events.js"
+        "conf.d/common/periodics.js"
+        # api 目录
+        "conf.d/api/alist-api.js"
+        "conf.d/api/emby-api.js"
+        # modules 目录
+        "conf.d/modules/emby-search.js"
+        # includes 目录
+        "conf.d/includes/http.conf"
+        "conf.d/includes/https.conf"
+        "conf.d/includes/proxy-header.conf"
+        "conf.d/includes/server-group.conf"
     )
 
     for file in "${files[@]}"; do
@@ -490,16 +510,14 @@ download_files() {
         if curl -fsSL "$base_url/$file" -o "$INSTALL_PATH/$file" 2>/dev/null; then
             log_success "✓ $file"
         else
-            log_warning "✗ $file (使用本地版本或稍后手动下载)"
+            log_warning "✗ $file (下载失败，请检查网络或手动复制)"
         fi
     done
 
-    # 下载其他必要目录
-    log_info "下载辅助文件..."
-    mkdir -p "$INSTALL_PATH/conf.d"/{common,api,modules,includes}
+    # 创建其他目录
+    mkdir -p "$INSTALL_PATH/conf.d"/{custome,docs,exampleConfig}
 
-    # 这些文件较多，建议使用完整的 tar.gz 包
-    log_info "建议下载完整配置包以确保所有文件完整"
+    log_success "所有必要文件下载完成"
     echo ""
 }
 
