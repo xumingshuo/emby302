@@ -168,7 +168,7 @@ collect_config() {
         read -p "Alist Token: " ALIST_TOKEN
     done
 
-    read -p "Alist 公网地址 (如无公网访问需求，直接回车使用内网地址): " ALIST_PUBLIC_ADDR
+    read -p "Alist 公网地址 (如无公网访问需求, 直接回车使用内网地址): " ALIST_PUBLIC_ADDR
     ALIST_PUBLIC_ADDR=${ALIST_PUBLIC_ADDR:-$ALIST_ADDR}
 
     read -p "Alist 是否启用了签名(sign)功能? [y/N]: " alist_sign
@@ -190,7 +190,7 @@ collect_config() {
     echo ""
 
     read -p "Emby 媒体库路径示例: " EMBY_MEDIA_PATH
-    while [ -z "$EMBY_MEDIA_PATH" ]; then
+    while [ -z "$EMBY_MEDIA_PATH" ]; do
         log_error "路径不能为空"
         read -p "Emby 媒体库路径示例: " EMBY_MEDIA_PATH
     done
