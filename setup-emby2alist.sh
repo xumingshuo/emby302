@@ -503,9 +503,9 @@ download_files() {
     echo ""
 }
 
-# 生成 docker-compose.yml
+# 生成 docker compose.yml
 generate_docker_compose() {
-    log_info "生成 docker-compose.yml..."
+    log_info "生成 docker compose.yml..."
 
     local network_config
     local ports_config=""
@@ -518,7 +518,7 @@ generate_docker_compose() {
       - ${PROXY_PORT}:8091"
     fi
 
-    cat > "$INSTALL_PATH/docker-compose.yml" << EOF
+    cat > "$INSTALL_PATH/docker compose.yml" << EOF
 version: '3.5'
 services:
   nginx-emby:
@@ -546,7 +546,7 @@ ${ports_config}
 #    restart: always
 EOF
 
-    log_success "docker-compose.yml 生成完成"
+    log_success "docker compose.yml 生成完成"
 }
 
 # 生成环境变量配置模板
@@ -608,7 +608,7 @@ show_next_steps() {
     echo ""
     echo "2. 启动服务:"
     echo "   cd $INSTALL_PATH"
-    echo "   docker-compose up -d"
+    echo "   docker compose up -d"
     echo ""
     echo "3. 查看日志:"
     echo "   docker logs -f nginx-emby"
@@ -634,7 +634,7 @@ main() {
     # 检查依赖
     log_info "检查系统依赖..."
     check_command docker
-    check_command docker-compose
+    check_command docker compose
     check_command curl
     log_success "依赖检查通过"
     echo ""
@@ -669,7 +669,7 @@ main() {
         log_warning "跳过下载，请手动复制必要文件到 $INSTALL_PATH"
     fi
 
-    # 生成 docker-compose
+    # 生成 docker compose
     generate_docker_compose
 
     # 生成环境变量模板
@@ -688,7 +688,7 @@ main() {
     if [[ ! $start_now =~ ^[Nn]$ ]]; then
         log_info "启动服务..."
         cd "$INSTALL_PATH"
-        if docker-compose up -d; then
+        if docker compose up -d; then
             log_success "服务启动成功!"
             echo ""
             sleep 2
