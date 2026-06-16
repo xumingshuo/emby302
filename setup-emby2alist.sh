@@ -495,6 +495,13 @@ download_files() {
         "conf.d/api/emby-api.js"
         # modules 目录
         "conf.d/modules/emby-search.js"
+        "conf.d/modules/emby-items.js"
+        "conf.d/modules/emby-live.js"
+        "conf.d/modules/emby-playback-info.js"
+        "conf.d/modules/emby-system.js"
+        "conf.d/modules/emby-transcode.js"
+        "conf.d/modules/emby-v-media.js"
+        "conf.d/modules/ngx-ext.js"
         # includes 目录
         "conf.d/includes/http.conf"
         "conf.d/includes/https.conf"
@@ -537,7 +544,6 @@ generate_docker_compose() {
     fi
 
     cat > "$INSTALL_PATH/docker compose.yml" << EOF
-version: '3.5'
 services:
   nginx-emby:
     image: nginx:1.27.1
